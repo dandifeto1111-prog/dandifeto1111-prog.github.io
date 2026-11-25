@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Danilo De La Rosa (DanDe) — Portafolio de Automatización, DevOps e IA Aplicada</title>
+  <meta name="description" content="Portafolio técnico de DanDe: Sistemas nativos en Rust + PowerShell, Pipelines CI/CD, Orquestación IA con n8n e Infraestructura Docker/GCP." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#090B10',
+            surface: '#11151E',
+            elevated: '#171C28',
+            borderline: '#232A3B',
+            violet: '#7C5CFF',
+            emerald: '#10B981',
+            amber: '#F59E0B',
+            slatex: '#94A3B8',
+            ivory: '#F1F5F9'
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+
+    body {
+      background-color: #090B10;
+      color: #F1F5F9;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .bg-grid {
+      background-image:
+        linear-gradient(to right, rgba(35, 42, 59, 0.28) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(35, 42, 59, 0.28) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .glass-card {
+      background: linear-gradient(180deg, rgba(23, 28, 40, 0.85) 0%, rgba(17, 21, 30, 0.92) 100%);
+      border: 1px solid #232A3B;
+      transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(124, 92, 255, 0.55);
+      box-shadow: 0 12px 36px -12px rgba(124, 92, 255, 0.2);
+    }
+
+    .filter-btn.active {
+      background-color: #7C5CFF;
+      color: #FFFFFF;
+      border-color: #7C5CFF;
+    }
+
+    @media print {
+      body {
+        background: #FFFFFF !important;
+        color: #0F172A !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .bg-grid {
+        background-image: none !important;
+      }
+      .glass-card {
+        background: #FFFFFF !important;
+        border: 1px solid #CBD5E1 !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+      }
+      .text-ivory, h1, h2, h3, h4 {
+        color: #0F172A !important;
+      }
+      .text-slatex, p, li, span {
+        color: #334155 !important;
+      }
+      .badge-print {
+        border: 1px solid #94A3B8 !important;
+        background: #F8FAFC !important;
+        color: #0F172A !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-grid selection:bg-violet selection:text-white">
+
+  <!-- Top Navigation -->
+  <header class="no-print sticky top-0 z-50 border-b border-borderline/80 bg-obsidian/85 backdrop-blur-md">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <a href="#inicio" class="flex items-center gap-3 font-bold tracking-tight text-ivory">
+        <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-violet/20 font-mono text-sm text-violet ring-1 ring-violet/40">DR</span>
+        <span>Danilo De La Rosa <span class="hidden text-xs font-normal text-slatex sm:inline">· Automation, DevOps &amp; AI</span></span>
+      </a>
+
+      <nav class="hidden items-center gap-6 text-sm text-slatex md:flex">
+        <a href="#proyectos" class="transition hover:text-ivory">Proyectos</a>
+        <a href="#arquitectura" class="transition hover:text-ivory">Capacidades DevOps &amp; IA</a>
+        <a href="#certificaciones" class="transition hover:text-ivory">Certificaciones</a>
+        <a href="#stack" class="transition hover:text-ivory">Stack Técnico</a>
+        <a href="#contacto" class="transition hover:text-ivory">Contacto</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-lg border border-borderline bg-surface px-3.5 py-2 text-xs font-medium text-ivory transition hover:border-violet/60 hover:bg-elevated">
+          <svg class="h-3.5 w-3.5 text-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+          </svg>
+          Exportar PDF
+        </button>
+        <a href="https://github.com/dandifeto1111-prog" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg bg-violet px-3.5 py-2 text-xs font-semibold text-white transition hover:bg-violet/90">
+          GitHub
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-6xl px-6 py-12 md:py-16">
+
+    <!-- Hero Section -->
+    <section id="inicio" class="mb-16">
+      <div class="inline-flex items-center gap-2 rounded-full border border-emerald/30 bg-emerald/10 px-3.5 py-1 text-xs font-medium text-emerald badge-print">
+        <span class="h-2 w-2 rounded-full bg-emerald animate-pulse no-print"></span>
+        Disponible · Automatización, DevOps, Sistemas &amp; IA Aplicada
+      </div>
+
+      <h1 class="mt-6 max-w-4xl text-4xl font-extrabold tracking-tight text-ivory sm:text-5xl lg:text-6xl">
+        Ingeniería de <span class="text-violet">Automatización</span>, Infraestructura <span class="text-emerald">DevOps</span> &amp; Agentes de <span class="text-ivory">IA</span>.
+      </h1>
+
+      <p class="mt-5 max-w-3xl text-base leading-relaxed text-slatex sm:text-lg">
+        Soy <strong class="text-ivory">Danilo De La Rosa</strong> (<span class="font-mono text-violet">DanDe</span>), constructor de sistemas enfocado en eliminar trabajo manual y cuellos de botella operativos. Diseño desde entornos de escritorio nativos en <span class="font-mono text-ivory">Rust + PowerShell</span> con pipelines <span class="font-mono text-ivory">CI/CD</span>, hasta arquitecturas de contenedores <span class="font-mono text-ivory">Docker / GCP</span> y flujos autónomos de <span class="font-mono text-ivory">IA + APIs REST</span> en producción.
+      </p>
+
+      <!-- Key Metrics -->
+      <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+        <div class="glass-card rounded-xl p-4">
+          <div class="font-mono text-2xl font-bold text-ivory">11</div>
+          <div class="mt-1 text-xs text-slatex">Binarios nativos en producción (AuraOS)</div>
+        </div>
+        <div class="glass-card rounded-xl p-4">
+          <div class="font-mono text-2xl font-bold text-emerald">24/7</div>
+          <div class="mt-1 text-xs text-slatex">Orquestación IA y webhooks (AURA)</div>
+        </div>
+        <div class="glass-card rounded-xl p-4">
+          <div class="font-mono text-2xl font-bold text-violet">5</div>
+          <div class="mt-1 text-xs text-slatex">Servicios Docker orquestados (Cloud)</div>
+        </div>
+        <div class="glass-card rounded-xl p-4">
+          <div class="font-mono text-2xl font-bold text-amber">CI/CD</div>
+          <div class="mt-1 text-xs text-slatex">Automatización PowerShell, Bash &amp; Actions</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="proyectos" class="mb-20">
+      <div class="flex flex-col justify-between gap-4 border-b border-borderline pb-6 sm:flex-row sm:items-end">
+        <div>
+          <span class="font-mono text-xs uppercase tracking-widest text-violet">Evidencia Técnica</span>
+          <h2 class="mt-1 text-2xl font-bold text-ivory sm:text-3xl">Proyectos Destacados</h2>
+        </div>
+
+        <!-- Interactive Filters -->
+        <div class="no-print flex flex-wrap gap-2">
+          <button onclick="filterProjects('all', this)" class="filter-btn active rounded-lg border border-borderline bg-surface px-3 py-1.5 text-xs font-medium text-slatex transition hover:text-ivory">
+            Todos (5)
+          </button>
+          <button onclick="filterProjects('automation', this)" class="filter-btn rounded-lg border border-borderline bg-surface px-3 py-1.5 text-xs font-medium text-slatex transition hover:text-ivory">
+            Automatización &amp; PowerShell
+          </button>
+          <button onclick="filterProjects('ai', this)" class="filter-btn rounded-lg border border-borderline bg-surface px-3 py-1.5 text-xs font-medium text-slatex transition hover:text-ivory">
+            IA &amp; APIs
+          </button>
+          <button onclick="filterProjects('devops', this)" class="filter-btn rounded-lg border border-borderline bg-surface px-3 py-1.5 text-xs font-medium text-slatex transition hover:text-ivory">
+            DevOps &amp; Cloud
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-8 grid gap-8">
+
+        <!-- PROJECT 1: AuraOS -->
+        <article data-categories="automation devops" class="project-card glass-card rounded-2xl p-6 sm:p-8">
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <div class="flex flex-wrap items-center gap-2.5">
+                <span class="rounded-md bg-violet/15 px-2.5 py-1 font-mono text-xs font-semibold text-violet badge-print">SISTEMAS · POWERSHELL · CI/CD</span>
+                <span class="font-mono text-xs text-slatex">Release v5.2.2 · Open Source</span>
+              </div>
+              <h3 class="mt-3 text-2xl font-bold text-ivory">AuraOS — Suite Nativa &amp; Automatización Windows 11</h3>
+              <p class="mt-2 max-w-3xl text-sm leading-relaxed text-slatex">
+                Entorno de escritorio híbrido escrito en <strong class="text-ivory">Rust puro + Direct2D</strong> sobre Windows 11, acompañado de un motor de automatización de despliegue en <strong class="text-ivory">PowerShell</strong> y pipelines <strong class="text-ivory">CI/CD en GitHub Actions</strong>.
+              </p>
+            </div>
+            <a href="https://github.com/dandifeto1111-prog/AuraOS" target="_blank" rel="noopener noreferrer" class="no-print inline-flex items-center gap-2 rounded-lg border border-borderline bg-elevated px-3.5 py-2 text-xs font-semibold text-ivory transition hover:border-violet">
+              Ver Repositorio ↗
+            </a>
+          </div>
+
+          <div class="mt-6 grid gap-6 md:grid-cols-2">
+            <div class="rounded-xl border border-borderline bg-obsidian/60 p-4">
+              <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-emerald">Automatización &amp; DevOps Implementado</h4>
+              <ul class="mt-3 space-y-2 text-sm text-slatex">
+                <li>• <strong class="text-ivory">Instalador Inteligente (`AuraShell-Setup.exe`):</strong> Escaneo automático de hardware (CPU, RAM, GPU/VRAM, Hz, conflictos) y descarga automatizada de releases desde GitHub.</li>
+                <li>• <strong class="text-ivory">Scripts PowerShell (`scripts/`):</strong> Automatización de configuración de sistema, planes de energía (`powercfg`), servicios, registro y reversión segura instantánea.</li>
+                <li>• <strong class="text-ivory">CI/CD con GitHub Actions:</strong> Compilación automatizada, empaquetado modular de 11 binarios (`app/`) y publicación de releases.</li>
+              </ul>
+            </div>
+
+            <div class="rounded-xl border border-borderline bg-obsidian/60 p-4">
+              <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-violet">Integración IA &amp; Arquitectura</h4>
+              <ul class="mt-3 space-y-2 text-sm text-slatex">
+                <li>• <strong class="text-ivory">Dev &amp; AI Hub:</strong> Panel centralizado que monitorea cuotas de APIs de IA (Gemini, Claude, Ollama, OpenRouter), commits de GitHub (7d) y estado de repositorios Git locales.</li>
+                <li>• <strong class="text-ivory">Rendimiento Extremo:</strong> Shell principal en ~20–30 MB de RAM y 0% CPU en reposo; procesos aislados (`AuraWallpaper.exe` DXVA 60 FPS).</li>
+                <li>• <strong class="text-ivory">Suite Modular:</strong> `AuraShell`, `AuraSettings`, `AuraLock`, `AuraFiles`, `AuraBeats DAW`, `AuraShot OCR`, entre otros.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Architecture Flow: AuraOS -->
+          <div class="mt-6 rounded-xl border border-borderline bg-obsidian/80 p-4">
+            <div class="font-mono text-[11px] uppercase tracking-wider text-slatex mb-3">Flujo de Arquitectura &amp; Entrega CI/CD</div>
+            <div class="flex flex-wrap items-center gap-2 text-xs font-mono">
+              <span class="rounded-md border border-violet/40 bg-violet/10 px-2.5 py-1.5 text-ivory">GitHub Actions CI/CD</span>
+              <span class="text-slatex">→</span>
+              <span class="rounded-md border border-borderline bg-surface px-2.5 py-1.5 text-ivory">AuraShell-Setup.exe (HW Scan)</span>
+              <span class="text-slatex">→</span>
+              <span class="rounded-md border border-emerald/40 bg-emerald/10 px-2.5 py-1.5 text-emerald">PowerShell Automation</span>
+              <span class="text-slatex">→</span>
+              <span class="rounded-md border border-borderline bg-surface px-2.5 py-1.5 text-ivory">11 Binarios Rust + Dev &amp; AI Hub</span>
+            </div>
+          </div>
+
+          <!-- Real Screenshots Gallery -->
+          <div class="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <figure class="overflow-hidden rounded-xl border border-borderline bg-obsidian">
+              <img src="assets/v51_dev_hub.png" alt="AuraOS Dev & AI Hub" class="h-28 w-full object-cover object-top" loading="lazy" />
+              <figcaption class="px-2.5 py-1.5 text-[11px] text-slatex">Dev &amp; AI Hub (APIs + Git)</figcaption>
+            </figure>
+            <figure class="overflow-hidden rounded-xl border border-borderline bg-obsidian">
+              <img src="assets/v52_setup_step1_hw.png" alt="Diagnóstico de Hardware" class="h-28 w-full object-cover object-top" loading="lazy" />
+              <figcaption class="px-2.5 py-1.5 text-[11px] text-slatex">Escáner de Hardware</figcaption>
+            </figure>
+            <figure class="overflow-hidden rounded-xl border border-borderline bg-obsidian">
+              <img src="assets/v52_setup_step2_modules.png" alt="Suite Modular 11 Binarios" class="h-28 w-full object-cover object-top" loading="lazy" />
+              <figcaption class="px-2.5 py-1.5 text-[11px] text-slatex">Despliegue Modular</figcaption>
+            </figure>
+            <figure class="overflow-hidden rounded-xl border border-borderline bg-obsidian">
+              <img src="assets/desktop_widgets.png" alt="AuraOS Escritorio Nativo" class="h-28 w-full object-cover object-top" loading="lazy" />
+              <figcaption class="px-2.5 py-1.5 text-[11px] text-slatex">Shell Nativo Direct2D</figcaption>
+            </figure>
+          </div>
+
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">PowerShell</span>
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">GitHub Actions (CI/CD)</span>
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">Rust</span>
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">Direct2D / Win32 API</span>
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">Git</span>
+          </div>
+        </article>
+
+        <!-- PROJECT 2: AURA Chatbot & Pipeline -->
+        <article data-categories="ai automation" class="project-card glass-card rounded-2xl p-6 sm:p-8">
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <div class="flex flex-wrap items-center gap-2.5">
+                <span class="rounded-md bg-emerald/15 px-2.5 py-1 font-mono text-xs font-semibold text-emerald badge-print">IA APLICADA · ORQUESTACIÓN · APIS</span>
+                <span class="font-mono text-xs text-slatex">Operación 24/7 · n8n + LangChain</span>
+              </div>
+              <h3 class="mt-3 text-2xl font-bold text-ivory">AURA — Agente Recepcionista IA &amp; Pipeline 24/7</h3>
+              <p class="mt-2 max-w-3xl text-sm leading-relaxed text-slatex">
+                Sistema de automatización conversacional y prospección operativa construido sobre <strong class="text-ivory">n8n</strong>, <strong class="text-ivory">agentes LangChain</strong> y <strong class="text-ivory">webhooks REST</strong> para atención inmediata por WhatsApp, resolución de dudas y agendamiento automático en tiempo real.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-6 grid gap-6 md:grid-cols-2">
+            <div class="rounded-xl border border-borderline bg-obsidian/60 p-4">
+              <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-emerald">Flujo Agente Recepcionista (`01_AURA`)</h4>
+              <ul class="mt-3 space-y-2 text-sm text-slatex">
+                <li>• <strong class="text-ivory">Endpoints Webhook (`POST /aura-whatsapp`):</strong> Recepción de eventos en tiempo real con cabeceras CORS configuradas para integración omnicanal.</li>
+                <li>• <strong class="text-ivory">Agente IA (`@n8n/n8n-nodes-langchain`):</strong> Comprensión de lenguaje natural, calificación de intención y agendamiento directo en calendario.</li>
+                <li>• <strong class="text-ivory">Landing Web (`aura-web`):</strong> Interfaz editorial responsive conectada al flujo de demostración y captación.</li>
+              </ul>
+            </div>
+
+            <div class="rounded-xl border border-borderline bg-obsidian/60 p-4">
+              <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-violet">Pipeline Maestro 24/7 (`00_Aura_Master`)</h4>
+              <ul class="mt-3 space-y-2 text-sm text-slatex">
+                <li>• <strong class="text-ivory">Ejecución Programada (Cron):</strong> Disparador horario continuo con lógica de control operativo.</li>
+                <li>• <strong class="text-ivory">Guardia Horaria &amp; Anti-Spam (JS):</strong> Validación automática de ventanas comerciales en zona horaria Colombia (`COT 08:30–19:30`) y control de lotes (`batchLimit`).</li>
+                <li>• <strong class="text-ivory">Tolerancia a Fallos:</strong> Reglas condicionales y alertas automatizadas para operación desatendida.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Architecture Flow: AURA -->
+          <div class="mt-6 rounded-xl border border-borderline bg-obsidian/80 p-4">
+            <div class="font-mono text-[11px] uppercase tracking-wider text-slatex mb-3">Flujo de Orquestación IA 24/7</div>
+            <div class="flex flex-wrap items-center gap-2 text-xs font-mono">
+              <span class="rounded-md border border-borderline bg-surface px-2.5 py-1.5 text-ivory">WhatsApp / Cron 1h</span>
+              <span class="text-slatex">→</span>
+              <span class="rounded-md border border-emerald/40 bg-emerald/10 px-2.5 py-1.5 text-emerald">Webhook REST + Guardia JS</span>
+              <span class="text-slatex">→</span>
+              <span class="rounded-md border border-violet/40 bg-violet/10 px-2.5 py-1.5 text-ivory">Agente LangChain IA</span>
+              <span class="text-slatex">→</span>
+              <span class="rounded-md border border-borderline bg-surface px-2.5 py-1.5 text-ivory">Calendario &amp; Alertas</span>
+            </div>
+          </div>
+
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">n8n Workflows</span>
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">LangChain Agents</span>
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">REST Webhooks</span>
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">JavaScript</span>
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">WhatsApp Automation</span>
+          </div>
+        </article>
+
+        <!-- PROJECT 3: PZ Server / Dedicated Server Cloud Control Panel -->
+        <article data-categories="devops automation" class="project-card glass-card rounded-2xl p-6 sm:p-8">
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <div class="flex flex-wrap items-center gap-2.5">
+                <span class="rounded-md bg-amber/15 px-2.5 py-1 font-mono text-xs font-semibold text-amber badge-print">DEVOPS · DOCKER · CLOUD GCP</span>
+                <span class="font-mono text-xs text-slatex">Full-Stack Infrastructure · FastAPI + React</span>
+              </div>
+              <h3 class="mt-3 text-2xl font-bold text-ivory">Dedicated Server &amp; Tactical Web Control Panel (`PZserver`)</h3>
+              <p class="mt-2 max-w-3xl text-sm leading-relaxed text-slatex">
+                Plataforma completa de aprovisionamiento, monitoreo y administración remota para servidores dedicados en <strong class="text-ivory">Google Cloud Platform (Compute Engine)</strong>, orquestada con <strong class="text-ivory">Docker Compose</strong>, proxy inverso <strong class="text-ivory">Caddy HTTPS</strong> y panel de control en <strong class="text-ivory">FastAPI + React</strong>.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-6 grid gap-6 md:grid-cols-2">
+            <div class="rounded-xl border border-borderline bg-obsidian/60 p-4">
+              <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-emerald">Infraestructura &amp; Operación Cloud</h4>
+              <ul class="mt-3 space-y-2 text-sm text-slatex">
+                <li>• <strong class="text-ivory">5 Servicios Orquestados (`docker-compose.yml`):</strong> Contenedores aislados en red interna (`mc-server`, `mc-backend`, `mc-frontend`, `mc-caddy`, `mc-duckdns`) con volúmenes persistentes.</li>
+                <li>• <strong class="text-ivory">Seguridad &amp; Redes:</strong> Reverse proxy con certificados TLS/SSL automáticos vía Caddy (Let's Encrypt), Dynamic DNS (DuckDNS) y reglas de firewall VPC/UFW.</li>
+                <li>• <strong class="text-ivory">Despliegue Automatizado (`setup.sh`):</strong> Guías y scripts de aprovisionamiento reproducible en Ubuntu 22.04/24.04 LTS.</li>
+              </ul>
+            </div>
+
+            <div class="rounded-xl border border-borderline bg-obsidian/60 p-4">
+              <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-violet">Backend API &amp; Automatización Operativa</h4>
+              <ul class="mt-3 space-y-2 text-sm text-slatex">
+                <li>• <strong class="text-ivory">API Asíncrona (`FastAPI` + Docker SDK):</strong> Control de ciclo de vida de contenedores (start/stop/restart) y telemetría de CPU/RAM en vivo.</li>
+                <li>• <strong class="text-ivory">Reinicio Seguro &amp; Backups:</strong> Secuencia automatizada de advertencia, guardado forzoso, apagado limpio y respaldo comprimido (`.tar.gz`).</li>
+                <li>• <strong class="text-ivory">Streaming en Tiempo Real:</strong> WebSocket bidireccional para consola en vivo y cliente RCON integrado, con suite de pruebas (`pytest`).</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Architecture Flow: PZserver -->
+          <div class="mt-6 rounded-xl border border-borderline bg-obsidian/80 p-4">
+            <div class="font-mono text-[11px] uppercase tracking-wider text-slatex mb-3">Arquitectura Cloud &amp; Contenedores (GCP)</div>
+            <div class="flex flex-wrap items-center gap-2 text-xs font-mono">
+              <span class="rounded-md border border-borderline bg-surface px-2.5 py-1.5 text-ivory">Internet / Admin</span>
+              <span class="text-slatex">→</span>
+              <span class="rounded-md border border-amber/40 bg-amber/10 px-2.5 py-1.5 text-amber">Caddy HTTPS + DuckDNS</span>
+              <span class="text-slatex">→</span>
+              <span class="rounded-md border border-violet/40 bg-violet/10 px-2.5 py-1.5 text-ivory">React SPA + FastAPI (WS/RCON)</span>
+              <span class="text-slatex">→</span>
+              <span class="rounded-md border border-emerald/40 bg-emerald/10 px-2.5 py-1.5 text-emerald">Docker Engine + Backups</span>
+            </div>
+          </div>
+
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">Docker &amp; Compose</span>
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">Google Cloud (GCP)</span>
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">FastAPI (Python 3.12)</span>
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">Caddy HTTPS / TLS</span>
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">WebSockets &amp; RCON</span>
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">React + Tailwind</span>
+          </div>
+        </article>
+
+        <!-- PROJECT 4: KardexGlass Almacén -->
+        <article data-categories="automation ai" class="project-card glass-card rounded-2xl p-6 sm:p-8">
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <div class="flex flex-wrap items-center gap-2.5">
+                <span class="rounded-md bg-emerald/15 px-2.5 py-1 font-mono text-xs font-semibold text-emerald badge-print">AUTOMATIZACIÓN · INVENTARIO · EXCEL / SHEETS</span>
+                <span class="font-mono text-xs text-slatex">Google AI Studio · App Web</span>
+              </div>
+              <h3 class="mt-3 text-2xl font-bold text-ivory">KardexGlass Almacén — Control de Inventario &amp; Sincronización</h3>
+              <p class="mt-2 max-w-3xl text-sm leading-relaxed text-slatex">
+                Sistema de gestión de almacén para control de entradas y salidas (<strong class="text-ivory">Kardex</strong>) con sincronización nativa de datos hacia <strong class="text-ivory">Excel (.xlsx/.xls)</strong> y <strong class="text-ivory">Google Sheets (.csv)</strong>, diseñado con interfaz <strong class="text-ivory">Refractive Glassmorphism</strong>.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-6 grid gap-6 md:grid-cols-2">
+            <div class="rounded-xl border border-borderline bg-obsidian/60 p-4">
+              <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-emerald">Automatización de Datos</h4>
+              <ul class="mt-3 space-y-2 text-sm text-slatex">
+                <li>• <strong class="text-ivory">Control Kardex en Tiempo Real:</strong> Registro estructurado de movimientos de inventario, stock disponible y trazabilidad de entradas/salidas.</li>
+                <li>• <strong class="text-ivory">Integración Excel &amp; Google Sheets:</strong> Importación y exportación nativa en formatos `.xlsx`, `.xls` y `.csv` para interoperabilidad corporativa.</li>
+              </ul>
+            </div>
+
+            <div class="rounded-xl border border-borderline bg-obsidian/60 p-4">
+              <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-violet">Flujo de Datos</h4>
+              <div class="mt-3 flex flex-wrap items-center gap-2 text-xs font-mono">
+                <span class="rounded-md border border-borderline bg-surface px-2.5 py-1.5 text-ivory">Movimientos Almacén</span>
+                <span class="text-slatex">→</span>
+                <span class="rounded-md border border-emerald/40 bg-emerald/10 px-2.5 py-1.5 text-emerald">Motor Kardex</span>
+                <span class="text-slatex">→</span>
+                <span class="rounded-md border border-violet/40 bg-violet/10 px-2.5 py-1.5 text-ivory">Sync Excel / Sheets</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">Google AI Studio</span>
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">Excel (.xlsx/.xls)</span>
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">Google Sheets (.csv)</span>
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">TypeScript / Web</span>
+          </div>
+        </article>
+
+        <!-- PROJECT 5: Cuentas Claras -->
+        <article data-categories="ai" class="project-card glass-card rounded-2xl p-6 sm:p-8">
+          <div class="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <div class="flex flex-wrap items-center gap-2.5">
+                <span class="rounded-md bg-violet/15 px-2.5 py-1 font-mono text-xs font-semibold text-violet badge-print">FINANZAS · ACCESIBILIDAD · VOZ</span>
+                <span class="font-mono text-xs text-slatex">Google AI Studio · App Web</span>
+              </div>
+              <h3 class="mt-3 text-2xl font-bold text-ivory">Cuentas Claras — Gestión Financiera Accesible con Voz</h3>
+              <p class="mt-2 max-w-3xl text-sm leading-relaxed text-slatex">
+                Aplicación contable y de control financiero personal diseñada específicamente para alta accesibilidad en adultos mayores, combinando diseño tipo libreta, <strong class="text-ivory">lectura asistida por voz</strong> y <strong class="text-ivory">modo nocturno</strong>.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-6 grid gap-6 md:grid-cols-2">
+            <div class="rounded-xl border border-borderline bg-obsidian/60 p-4">
+              <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-emerald">Capacidades Clave</h4>
+              <ul class="mt-3 space-y-2 text-sm text-slatex">
+                <li>• <strong class="text-ivory">Control Contable Simplificado:</strong> Registro claro de ingresos, egresos y balances en formato libreta sin fricción cognitiva.</li>
+                <li>• <strong class="text-ivory">Asistencia por Voz &amp; UX Inclusiva:</strong> Síntesis de lectura por voz para confirmación de montos y modo nocturno de alto contraste.</li>
+              </ul>
+            </div>
+
+            <div class="rounded-xl border border-borderline bg-obsidian/60 p-4">
+              <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-violet">Flujo de Experiencia</h4>
+              <div class="mt-3 flex flex-wrap items-center gap-2 text-xs font-mono">
+                <span class="rounded-md border border-borderline bg-surface px-2.5 py-1.5 text-ivory">Registro Ingreso/Gasto</span>
+                <span class="text-slatex">→</span>
+                <span class="rounded-md border border-violet/40 bg-violet/10 px-2.5 py-1.5 text-ivory">Balance Libreta</span>
+                <span class="text-slatex">→</span>
+                <span class="rounded-md border border-emerald/40 bg-emerald/10 px-2.5 py-1.5 text-emerald">Lectura por Voz</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">Google AI Studio</span>
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">Web Speech / Voz</span>
+            <span class="rounded-md border border-borderline bg-surface px-2.5 py-1 font-mono text-xs text-ivory badge-print">Accesibilidad UX</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Role Alignment Matrix -->
+    <section id="arquitectura" class="mb-20">
+      <div class="mb-6">
+        <span class="font-mono text-xs uppercase tracking-widest text-emerald">Alineación Operativa</span>
+        <h2 class="mt-1 text-2xl font-bold text-ivory sm:text-3xl">Cómo resuelvo retos de Automatización, DevOps e IA</h2>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-3">
+        <div class="glass-card rounded-xl p-5">
+          <div class="font-mono text-xs font-semibold text-violet">01 · AUTOMATIZACIÓN DE OPERACIONES</div>
+          <h3 class="mt-2 text-lg font-bold text-ivory">Scripting &amp; Orquestación</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slatex">
+            Experiencia práctica automatizando tareas de sistema en Windows con <strong class="text-ivory">PowerShell</strong>, aprovisionamiento Linux con <strong class="text-ivory">Bash</strong> y flujos de negocio 24/7 con <strong class="text-ivory">n8n, webhooks y APIs REST</strong>.
+          </p>
+        </div>
+
+        <div class="glass-card rounded-xl p-5">
+          <div class="font-mono text-xs font-semibold text-emerald">02 · DEVOPS &amp; CI/CD</div>
+          <h3 class="mt-2 text-lg font-bold text-ivory">Contenedores &amp; Entregas</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slatex">
+            Construcción de pipelines <strong class="text-ivory">CI/CD en GitHub Actions</strong> (compilación, empaquetado, releases), administración de <strong class="text-ivory">Docker Compose</strong>, reverse proxies HTTPS y backups automatizados sin corrupción de datos.
+          </p>
+        </div>
+
+        <div class="glass-card rounded-xl p-5">
+          <div class="font-mono text-xs font-semibold text-amber">03 · INTELIGENCIA ARTIFICIAL</div>
+          <h3 class="mt-2 text-lg font-bold text-ivory">Agentes &amp; Integración LLM</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slatex">
+            Diseño de agentes conversacionales con <strong class="text-ivory">LangChain</strong> conectados a canales reales (WhatsApp), monitoreo de múltiples proveedores LLM (Gemini, Claude, Ollama) y guardias lógicas de control.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certificaciones Section -->
+    <section id="certificaciones" class="mb-20">
+      <div class="mb-6">
+        <span class="font-mono text-xs uppercase tracking-widest text-amber">Formación &amp; Respaldo</span>
+        <h2 class="mt-1 text-2xl font-bold text-ivory sm:text-3xl">Certificaciones &amp; Credenciales</h2>
+      </div>
+
+      <div id="cert-grid" class="grid gap-4 sm:grid-cols-2">
+        <!-- Certificado 1: Código Facilito -->
+        <div class="glass-card rounded-xl p-6">
+          <div class="flex items-center justify-between gap-2">
+            <span class="rounded-md bg-emerald/15 px-2.5 py-1 font-mono text-xs font-semibold text-emerald badge-print">IA APLICADA · CÓDIGO FACILITO</span>
+            <span class="font-mono text-xs text-slatex">25 Nov 2026 · 4h 19m</span>
+          </div>
+          <h3 class="mt-3 text-lg font-bold text-ivory">Curso de Desarrollo de Software con Claude Code</h3>
+          <p class="mt-1.5 text-sm text-slatex">
+            Emitido a <strong class="text-ivory">Danilo De Jesus De La Rosa Polo</strong> · Instructor: Uriel Hernández (CTO, Código Facilito).
+          </p>
+          <div class="mt-4 rounded-lg border border-borderline bg-obsidian/70 px-3 py-2 font-mono text-[11px] text-slatex break-all">
+            ID: <span class="text-ivory">4faeb0f7-4069-4f5d-8e78-b5e0f6a988c8</span>
+          </div>
+        </div>
+
+        <!-- Certificado 2: Udemy -->
+        <div class="glass-card rounded-xl p-6">
+          <div class="flex items-center justify-between gap-2">
+            <span class="rounded-md bg-violet/15 px-2.5 py-1 font-mono text-xs font-semibold text-violet badge-print">DESARROLLO MÓVIL · UDEMY</span>
+            <span class="font-mono text-xs text-slatex">25 Nov 2026 · 32.5 horas</span>
+          </div>
+          <h3 class="mt-3 text-lg font-bold text-ivory">Desarrollo para Android con Jetpack Compose y Kotlin</h3>
+          <p class="mt-1.5 text-sm text-slatex">
+            Emitido a <strong class="text-ivory">Danilo De la Rosa</strong> · Instructor: Jorge Maldonado B.
+          </p>
+          <div class="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-borderline bg-obsidian/70 px-3 py-2 font-mono text-[11px] text-slatex">
+            <span class="break-all">ID: <span class="text-ivory">UC-5768197b-4e31-4fc8-ac4c-cb2c2963d8cb</span></span>
+            <a href="https://ude.my/UC-5768197b-4e31-4fc8-ac4c-cb2c2963d8cb" target="_blank" rel="noopener noreferrer" class="no-print text-violet hover:underline">Verificar ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stack Técnico -->
+    <section id="stack" class="mb-20">
+      <div class="mb-6">
+        <span class="font-mono text-xs uppercase tracking-widest text-violet">Herramientas &amp; Lenguajes</span>
+        <h2 class="mt-1 text-2xl font-bold text-ivory sm:text-3xl">Stack Técnico Comprobado</h2>
+      </div>
+
+      <div class="glass-card rounded-2xl p-6 sm:p-8">
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-emerald">Automatización &amp; Scripting</h3>
+            <ul class="mt-3 space-y-1.5 text-sm text-slatex">
+              <li>PowerShell (Windows Admin)</li>
+              <li>Bash / Shell Scripting</li>
+              <li>n8n (Workflows &amp; Webhooks)</li>
+              <li>Python (FastAPI / Scripts)</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-violet">DevOps &amp; Cloud</h3>
+            <ul class="mt-3 space-y-1.5 text-sm text-slatex">
+              <li>GitHub Actions (CI/CD)</li>
+              <li>Docker &amp; Docker Compose</li>
+              <li>Google Cloud (Compute Engine)</li>
+              <li>Caddy (TLS/SSL) &amp; Git</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-amber">IA &amp; Integraciones</h3>
+            <ul class="mt-3 space-y-1.5 text-sm text-slatex">
+              <li>LangChain / Agentes IA</li>
+              <li>APIs REST &amp; WebSockets</li>
+              <li>Gemini / Claude / Ollama</li>
+              <li>Integración WhatsApp</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-ivory">Desarrollo &amp; Sistemas</h3>
+            <ul class="mt-3 space-y-1.5 text-sm text-slatex">
+              <li>Rust (Direct2D / Win32)</li>
+              <li>TypeScript / JavaScript</li>
+              <li>React + Vite + Tailwind CSS</li>
+              <li>Linux (Ubuntu) &amp; Windows 11</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contacto" class="border-t border-borderline pt-10 pb-8">
+      <div class="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+        <div>
+          <h2 class="text-xl font-bold text-ivory">¿Conversamos sobre cómo automatizar tu operación?</h2>
+          <p class="mt-1 text-sm text-slatex">Código fuente, arquitecturas y demos disponibles bajo solicitud.</p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href="https://github.com/dandifeto1111-prog" target="_blank" rel="noopener noreferrer" class="rounded-lg border border-borderline bg-surface px-4 py-2.5 text-sm font-semibold text-ivory transition hover:border-violet">
+            github.com/dandifeto1111-prog
+          </a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    function filterProjects(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.querySelectorAll('.project-card').forEach(card => {
+        const cats = card.getAttribute('data-categories') || '';
+        if (category === 'all' || cats.includes(category)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
